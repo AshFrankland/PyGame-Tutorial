@@ -134,6 +134,12 @@ def main():
                 red_health -= 1
                 BULLET_HIT_SOUND.play()
 
+        keys_pressed = pygame.key.get_pressed()
+        red_handle_movement(keys_pressed, red)
+        blue_handle_movement(keys_pressed, blue)
+        handle_bullets(red_bullets, blue_bullets, red, blue)
+        draw_window(red, blue, red_bullets, blue_bullets, red_health, blue_health)
+
         winner_text = ""
         if red_health <= 0:
             winner_text = "Blue Wins!"
@@ -142,12 +148,6 @@ def main():
         if winner_text != "":
             draw_winner(winner_text)
             break
-
-        keys_pressed = pygame.key.get_pressed()
-        red_handle_movement(keys_pressed, red)
-        blue_handle_movement(keys_pressed, blue)
-        handle_bullets(red_bullets, blue_bullets, red, blue)
-        draw_window(red, blue, red_bullets, blue_bullets, red_health, blue_health)
     main()
 
 if __name__ == "__main__":
